@@ -1,0 +1,28 @@
+
+
+*{
+    font-family: Arial;
+    font-size: 16px;
+    padding: 3px;
+}
+
+
+.no_copy{
+    background-color: aquamarine;
+    margin: 20px;
+}
+
+
+.hide{
+    visibility: hidden;
+    display: none;
+
+}
+
+
+#output{
+    background-color: mediumpurple;
+    width: 1000px;
+    height: 400px;
+    font-size: 20px;
+}
