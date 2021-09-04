@@ -2,21 +2,31 @@
 
 class EasyBlocker{ // this class block some of the browser features
     constructor() {
+        this.setup()
+        this.tab_change_num = 0
+        this.pointer_conter = null
+        this.pointer_in = null
+    }
+
+    setup(){
         this.googleTranslateBlocker()
         this.copyEventCapture()
         this.tabChangedDetector()
         this.pointerDetector()
-        this.tab_change_num = 0
-        this.pointer_conter = null
-        this.pointer_in = null
+        this.pagePrintBlocker()
     }
 
     pointerDetector(){
         let self = this;
         const para = document.querySelector('body');
 
-        para.addEventListener('pointerleave', (event) => {
+        para.addEventListener('pointerleave', (e) => {
            self.pointer_conter++;
+            console.log(e)
+            // new Notification("You MUST NOT LEAVE THE EXAM, IF YOU DO NOT BACK IN 10 SECOND THE EXAM WILL " +
+            //     "BE CANCELED");
+            // alert("You MUST NOT LEAVE THE EXAM, IF YOU DO NOT BACK IN 10 SECOND THE EXAM WILL" +
+            //     "BE CANCELED")
            showInfo();
            self.pointer_in=false;
            self.timer();
@@ -30,6 +40,20 @@ class EasyBlocker{ // this class block some of the browser features
 
     })}
 
+    pagePrintBlocker(){
+        window.addEventListener('beforeprint', (event) => {
+            let bodyElem = document.getElementsByTagName("body")[0];
+            bodyElem.setAttribute("class", "hide");
+        });
+
+
+        window.addEventListener('afterprint', (event) => {
+            let bodyElem = document.getElementsByTagName("body")[0];
+            bodyElem.removeAttribute("class")
+        });
+
+    }
+
     googleTranslateBlocker() {
         // blocking Google translator
         let htmlTag = document.getElementsByTagName("html")[0];
@@ -38,6 +62,8 @@ class EasyBlocker{ // this class block some of the browser features
 
     copyEventCapture() {
         //  copy or cut blocked for any HTML elements that has a class called *(no_copy)*
+
+
         let copy_elm = document.getElementsByClassName("no_copy");
 
         function copyEventHandler(e, operation) {
@@ -56,6 +82,7 @@ class EasyBlocker{ // this class block some of the browser features
 
         function EventHandler(e) {
             self.tab_change_num++
+
             showInfo()
             // alert(`do not change the tab ${e}`);
         }
@@ -143,8 +170,6 @@ let block = new EasyBlocker()
 let applicant = new ApplicantInfo()
 
 showInfo()
-
-
 
 
 
