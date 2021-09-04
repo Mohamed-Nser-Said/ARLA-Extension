@@ -5,7 +5,7 @@ class EasyBlocker{ // this class block some of the browser features
         this.setup()
         this.tab_change_num = 0
         this.pointer_conter = null
-        this.pointer_in = null
+        // this.pointer_in = null
     }
 
     setup(){
