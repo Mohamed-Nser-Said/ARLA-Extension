@@ -17,27 +17,21 @@ class EasyBlocker{ // this class block some of the browser features
 
     pointerDetector(){
         let self = this;
-        const para = document.querySelector('body');
+        const para = document.querySelector('html');
         const card_warning = document.getElementById("card-3")
 
         para.addEventListener('pointerleave', (e) => {
            self.pointer_conter++;
             // new Notification("You MUST NOT LEAVE THE EXAM, IF YOU DO NOT BACK IN 10 SECOND THE EXAM WILL " +
             //     "BE CANCELED");
-            // alert("You MUST NOT LEAVE THE EXAM, IF YOU DO NOT BACK IN 10 SECOND THE EXAM WILL" +
-            //     "BE CANCELED")
             card_warning.classList.add("warning")
-            // card_warning.setAttribute("class", "warning");
            showInfo();
-           self.pointer_in=false;
-
 
         });
 
         para.addEventListener('pointerover', (event) => {
-            self.pointer_in=true;
             card_warning.classList.remove("warning")
-            // card_warning.setAttribute("class", "card-container");
+
 
 
     })}
@@ -85,12 +79,10 @@ class EasyBlocker{ // this class block some of the browser features
     tabChangedDetector() {
         //  this event fires when ever the user changes the tab*
         let self = this;
-
         function EventHandler(e) {
             self.tab_change_num++
-
             showInfo()
-            // alert(`do not change the tab ${e}`);
+            alert(`Tab has changed${e}`);
         }
 
         document.addEventListener("visibilitychange", event => {
@@ -107,40 +99,14 @@ class EasyBlocker{ // this class block some of the browser features
 }}
 
 
-class ApplicantInfo {
-    constructor(name = 'no given name') {
-        this.name = name;
-        this.language = navigator.language;
-        this.location = null;
-        this.findLocation()
-    }
-
-    findLocation(){
-        let self = this
-
-        navigator.geolocation.getCurrentPosition(setLocation)
-
-        function setLocation(pos) {
-            self.location = `longitude: ${pos.coords.longitude}, latitude: ${pos.coords.latitude}`
-        }
-    }
-}
 
 
 function showInfo() {
-        const output = document.getElementById('output');
-        output.innerText = `
-        
+    const output = document.getElementById('output');
+    output.innerText = `
         Pointer Out:    ${block.pointer_conter}
         Tab Changed:    ${block.tab_change_num}
-
-        `
-    //
-    // location: ${applicant.location}
-    // language: ${applicant.language}
-    //
-    }
-
+        `}
 
 function sliderButton() {
     let i=1;
@@ -171,13 +137,8 @@ function sliderButton() {
 }
 
 
-
-
 sliderButton()
 let block = new EasyBlocker()
-let applicant = new ApplicantInfo()
-
-showInfo()
 
 
 

@@ -12,7 +12,6 @@
 
 </head>
 <body>
-    <h1 class="hide">ARLA EXTENSION</h1>
 
     <button id="right-btn">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -30,8 +29,8 @@
 
         <h2 class="header-all">Prevent default text operations</h2>
 
-        <div  class="inner-card right-card" >
-            <ul>
+        <div  class="inner-card left-card" >
+            <ul class="no_copy">
                 <h2>Preventing some simple operation:</h2>
 
                 <li>Copy text.</li>
@@ -43,45 +42,38 @@
 
         </div>
 
-        <textarea class="inner-card left-card" placeholder="Try to copy and past it here"></textarea>
+        <textarea class="inner-card right-card" placeholder="Try to copy and past it here"></textarea>
 
     </section>
 
     <section class="card-container hide" id="card-2">
         <h2 class="header-all">Other Operations</h2>
 
-        <div  class="inner-card right-card" >
+        <div  class="inner-card left-card" >
             <ul>
                 <li>Preventing image download.</li>
-                <li>Prevent Printing or saving as PDF</li>.
-                <li>Prevent taking a Screenshot</li>
-
-
-                <li>Preventing image download.</li>
-
+                <li>Prevent Printing or saving as PDF.</li>
+                <li>Prevent taking a Screenshot.</li>
             </ul>
         </div>
 
-        <img class="inner-card left-card right-click-block" src="src/img.jpeg" alt="img test">
+        <img class="inner-card right-card right-click-block" src="src/img.jpg" alt="img test">
 
     </section>
 
     <section class="card-container hide" id="card-3">
         <h2 class="header-all">Detecting tab change</h2>
 
-
-        <div  class="inner-card right-card" >
+        <div  class="inner-card left-card" >
             <ul>
                 <li>We could detect if the applicant is not active in the page, for example doing something
                     else or using another app.</li>
                 <li>And also we could detect if the tab is changed.</li>
-
             </ul>
 
         </div>
 
-
-        <div class="inner-card left-card output">
+        <div class="inner-card right-card output">
             <p id="output"></p>
         </div>
 
