@@ -125,7 +125,7 @@ function sliderButton() {
 
     right_btn.addEventListener('click', function (e ){
 
-        if (i<3){
+        if (i<4){
             document.getElementById(`card-${i}`).setAttribute("class", "hide");
             i+=1;
             document.getElementById(`card-${i}`).setAttribute("class", "card-container");

@@ -4,6 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>ARLA extension</title>
+    <!-- Load TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.2"></script>
+    <!-- Load BodyPix -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.0"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=
@@ -80,6 +85,14 @@
 
     </section>
 
+    <section  class="card-container hide" id="card-4">
+        <h2 class="header-all">Tensorflow JS</h2>
+        <canvas class="inner-card left-card"></canvas>
+        <video class="inner-card right-card"  id="myVid" autoplay playsinline></video>
+
+    </section>
+
+
 
 
 
@@ -87,4 +100,5 @@
 
 </body>
 <script src="main.js" defer></script>
+<script src="eye_proctor.js" defer></script>
 </html>
