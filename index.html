@@ -3,66 +3,96 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Proctor test</title>
+    <title>ARLA extension</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=
+    Open+Sans:ital,wght@0,300;0,400;0,800;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
+    <h1 class="hide">ARLA EXTENSION</h1>
 
+    <button id="right-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+    </button>
+    <button id="left-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+        </svg>
 
-<p id="output"></p>
-<p id="timer"></p>
+    </button>
 
+    <section class="card-container" id="card-1">
 
-<form action="" method="get">
+        <h2 class="header-all">Prevent default text operations</h2>
 
-    <fieldset>
+        <div  class="inner-card right-card" >
+            <ul>
+                <h2>Preventing some simple operation:</h2>
 
-        <legend>exam sample</legend>
+                <li>Copy text.</li>
+                <li>Cut text.</li>
+                <li>Drag text.</li>
+                <li>Translate text using Google Translate.</li>
 
-        <div class="qs qs1">
-        <p>
-            <p class="no_copy">Auch gibt es niemanden, der den Schmerz an sich liebt,
-            sucht oder wünscht, nur, weil er Schmerz ist, es sei denn, es kommt zu zufälligen Umständen,
-            in denen Mühen und Schmerz ihm große Freude bereiten können.
-            Um ein triviales Beispiel zu nehmen, wer von uns unterzieht sich je .</p><br />
-            <select name="referrer">
-                <option value="answer 1">answer 1</option>
-                <option value="answer 2">answer 2</option>
-                <option value="answer 3">answer 3</option>
-                <option value="answer 4">answer 4</option>
-            </select>
-        </p>
-        </div>
-
-
-        <div class="qs qs2">
-        <p class="no_copy">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias beatae consequatur,
-            eaque earum, fuga fugiat illo ipsam laboriosam laudantium necessitatibus
-            nemo nesciunt obcaecati quasi quidem quos similique velit, vero voluptate.</p><br />
-            <label><input type="radio" name="answer" value="answer 1" /> answer 1</label><br />
-            <label><input type="radio" name="answer" value="answer 2" /> answer 2</label><br />
-            <label><input type="radio" name="answer" value="answer 3" /> answer 3</label><br />
+            </ul>
 
         </div>
 
-        <div class="qs qs3">
+        <textarea class="inner-card left-card" placeholder="Try to copy and past it here"></textarea>
 
-            <p class="no_copy">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias beatae consequatur,
-                eaque earum, fuga fugiat illo ipsam laboriosam laudantium necessitatibus
-                nemo nesciunt obcaecati quasi quidem quos similique velit, vero voluptate
-            </p><br />
+    </section>
 
-            <textarea class="no_copy" rows="4" cols="40" id="qs3"></textarea>
+    <section class="card-container hide" id="card-2">
+        <h2 class="header-all">Other Operations</h2>
+
+        <div  class="inner-card right-card" >
+            <ul>
+                <li>Preventing image download.</li>
+                <li>Prevent Printing or saving as PDF</li>.
+                <li>Prevent taking a Screenshot</li>
+
+
+                <li>Preventing image download.</li>
+
+            </ul>
+        </div>
+
+        <img class="inner-card left-card right-click-block" src="src/img.jpeg" alt="img test">
+
+    </section>
+
+    <section class="card-container hide" id="card-3">
+        <h2 class="header-all">Detecting tab change</h2>
+
+
+        <div  class="inner-card right-card" >
+            <ul>
+                <li>We could detect if the applicant is not active in the page, for example doing something
+                    else or using another app.</li>
+                <li>And also we could detect if the tab is changed.</li>
+
+            </ul>
+
         </div>
 
 
+        <div class="inner-card left-card output">
+            <p id="output"></p>
+        </div>
 
 
-        <input type="submit" value="Submit exam" />
+    </section>
 
-    </fieldset>
-</form>
+
+
+
+
+
 </body>
 <script src="main.js" defer></script>
 </html>

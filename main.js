@@ -5,12 +5,11 @@ class EasyBlocker{ // this class block some of the browser features
         this.setup()
         this.tab_change_num = 0
         this.pointer_conter = null
-        // this.pointer_in = null
     }
 
     setup(){
         this.googleTranslateBlocker()
-        this.copyEventCapture()
+        this.EventCapture()
         this.tabChangedDetector()
         this.pointerDetector()
         this.pagePrintBlocker()
@@ -19,23 +18,26 @@ class EasyBlocker{ // this class block some of the browser features
     pointerDetector(){
         let self = this;
         const para = document.querySelector('body');
+        const card_warning = document.getElementById("card-3")
 
         para.addEventListener('pointerleave', (e) => {
            self.pointer_conter++;
-            console.log(e)
             // new Notification("You MUST NOT LEAVE THE EXAM, IF YOU DO NOT BACK IN 10 SECOND THE EXAM WILL " +
             //     "BE CANCELED");
             // alert("You MUST NOT LEAVE THE EXAM, IF YOU DO NOT BACK IN 10 SECOND THE EXAM WILL" +
             //     "BE CANCELED")
+            card_warning.classList.add("warning")
+            // card_warning.setAttribute("class", "warning");
            showInfo();
            self.pointer_in=false;
-           self.timer();
+
 
         });
 
         para.addEventListener('pointerover', (event) => {
             self.pointer_in=true;
-            self.timer();
+            card_warning.classList.remove("warning")
+            // card_warning.setAttribute("class", "card-container");
 
 
     })}
@@ -60,20 +62,24 @@ class EasyBlocker{ // this class block some of the browser features
         htmlTag.setAttribute("translate", "no");
     }
 
-    copyEventCapture() {
-        //  copy or cut blocked for any HTML elements that has a class called *(no_copy)*
+    EventCapture(){
 
-
-        let copy_elm = document.getElementsByClassName("no_copy");
-
-        function copyEventHandler(e, operation) {
+        // temp function to handle and receive the events and show an alert
+        function notificationAlert(e, operation) {
             alert(`Sorry ${operation} is not Allowed`);
             e.preventDefault();}
 
+        // blocking right click for any images that has the class name *right-click-img-block*
+        let images = document.getElementsByClassName("right-click-block");
+        for (const img of images) {
+            img.addEventListener('contextmenu', function (e){notificationAlert(e, "Right Click")}, false);
+        }
+
+        // blocking copy and drag features for any elements that has the class name *no_copy*
+        let copy_elm = document.getElementsByClassName("no_copy");
         for (const ele of copy_elm) {
-            ele.addEventListener('copy', function (e){copyEventHandler(e, "Copy")}, false);
-            ele.addEventListener('contextmenu', function (e){copyEventHandler(e, "Right Click")}, false);
-            ele.addEventListener('dragstart', function (e ){copyEventHandler(e, "Drag")}, false);
+            ele.addEventListener('copy', function (e){notificationAlert(e, "Copy")}, false);
+            ele.addEventListener('dragstart', function (e ){notificationAlert(e, "Drag")}, false);
         }}
 
     tabChangedDetector() {
@@ -96,37 +102,9 @@ class EasyBlocker{ // this class block some of the browser features
 
         })
 
-        }
 
-    timer(){
-        let t=0;
-        // while(!this.pointer_in){
-        //     t++;
-        //     setTimeout(()=>{
-        //         document.getElementById("timer").textContent=t.toString();
-        //
-        //     },1000)
-        }
-        // const countDownDate = new Date().getTime() + 10000;
-        // let self =this
-        // if(self.pointer_in){
-        //     let x = setInterval(function() {
-        //         let now = new Date().getTime();
-        //         let distance = countDownDate - now;
-        //
-        //
-        //         if (distance < 0) {
-        //             clearInterval(x);
-        //             document.getElementById("timer").textContent = "EXPIRED";
-        //         } else if(self.pointer_in){
-        //             clearInterval(x)
-        //             document.getElementById("timer").textContent = "Pointer Back";
-        //         }
-        //
-        //     }, 1000);
-    // }
 
-}
+}}
 
 
 class ApplicantInfo {
@@ -153,19 +131,49 @@ function showInfo() {
         const output = document.getElementById('output');
         output.innerText = `
         
-        location: ${applicant.location}
-        language: ${applicant.language} 
-        tab changed: ${block.tab_change_num}
-        pointer out: ${block.pointer_conter}
-        
+        Pointer Out:    ${block.pointer_conter}
+        Tab Changed:    ${block.tab_change_num}
+
         `
+    //
+    // location: ${applicant.location}
+    // language: ${applicant.language}
+    //
     }
 
 
+function sliderButton() {
+    let i=1;
+
+    let left_btn = document.getElementById("left-btn");
+    let right_btn = document.getElementById("right-btn");
+
+    left_btn.addEventListener('click', function (e){
+        if (i>1){
+            document.getElementById(`card-${i}`).setAttribute("class", "hide");
+            i-=1;
+            document.getElementById(`card-${i}`).setAttribute("class", "card-container");
+
+        }
+    }, false);
+
+    right_btn.addEventListener('click', function (e ){
+
+        if (i<3){
+            document.getElementById(`card-${i}`).setAttribute("class", "hide");
+            i+=1;
+            document.getElementById(`card-${i}`).setAttribute("class", "card-container");
+
+        }
+    }, false);
+
+
+}
 
 
 
 
+sliderButton()
 let block = new EasyBlocker()
 let applicant = new ApplicantInfo()
 

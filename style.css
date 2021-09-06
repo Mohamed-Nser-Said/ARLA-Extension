@@ -1,28 +1,161 @@
 
-
-*{
-    font-family: Arial;
-    font-size: 16px;
-    padding: 3px;
-}
-
-
-.no_copy{
-    background-color: aquamarine;
-    margin: 20px;
-}
-
-
+/* used by main.js to hide printing the page*/
 .hide{
     visibility: hidden;
     display: none;
+}
+
+*{
+    /*font-family: 'Noto Sans', sans-serif;*/
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
 
 }
 
-
-#output{
-    background-color: mediumpurple;
-    width: 1000px;
-    height: 400px;
-    font-size: 20px;
+body{
+    /*margin: 20px;*/
+    /*border-radius: 20px;*/
+    /*border: #1864ab 5px solid;*/
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 }
+
+h1 {
+    vertical-align: center;
+    font-size: 72px;
+    grid-column: 1/3;
+    grid-row: 1;
+    border-radius: 20px;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    background: rgb(16,4,152);
+    background: linear-gradient(90deg, rgba(16,4,152,1) 0%, rgba(16,181,157,1) 71%, rgba(0,212,255,1) 100%);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.card-container{
+    grid-column: 1/3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 4fr;
+    border-radius: 20px;
+    padding: 30px;
+    gap: 10px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+}
+
+.card-container:hover{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.header-all{
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    color: white;
+    padding: 30px;
+    font-weight: bold;
+    font-size: 36px;
+    text-align: center;
+    border-radius: 20px;
+    background: linear-gradient(90deg, rgba(71,58,218,1) 0%, rgba(16,181,157,1) 51%, rgba(0,212,255,1) 100%);
+    grid-column: 1/3;
+}
+
+button{
+    gap: 0;
+    grid-row: 2;
+    border-radius: 50px;
+    width: 80px;
+    height: 80px;
+    border: white;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    background: rgb(16, 4, 152) linear-gradient(to right, #348F50 0%, #56B4D3 51%, #348F50 100%);
+}
+
+button#right-btn{
+    margin-right: 200px;
+    grid-column: 2;
+    justify-self: end;
+
+}
+
+button#left-btn{
+    grid-column: 1;
+    margin-left : 200px;
+}
+
+button:hover{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12)
+    0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+}
+
+button:active{
+    width: 83px;
+    height: 83px;
+
+}
+
+#card-1, #card-2, #card-3{
+    width: 90%;
+    margin: 20px 20px 10px 20px;
+    grid-row: 1;
+    grid-column: 1/3;
+    justify-self: center;
+}
+
+.inner-card{
+    border-radius: 20px;
+    padding: 20px;
+    grid-row: 2;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+.right-card{
+    grid-column: 1;
+}
+
+.left-card{
+    grid-column: 2;
+}
+
+li{
+    font-size: 27px;
+    padding-bottom: 30px;
+}
+
+ul>h2{
+    font-size: 30px;
+    padding-bottom: 20px;
+}
+
+textarea.inner-card{
+    font-size: 22px;
+    border: white;
+}
+
+img.inner-card{
+    padding: 40px;
+    max-width: 90%;
+    border-radius: 25px;
+}
+
+.warning{
+    box-shadow: rgba(239, 2, 2, 0.8) 2px 22px 70px 50px;
+}
+
+.output{
+    text-align: center;
+}
+#output {
+    text-transform: uppercase;
+    font-size: 50px;
+    font-weight: 700;
+    color: #FF003F;
+    text-shadow: 0px 2px 2px rgba(255, 255, 255, 0.4)
+
+}
+
