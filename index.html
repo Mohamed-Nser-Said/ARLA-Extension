@@ -4,10 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>ARLA extension</title>
-    <!-- Load TensorFlow.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.6.0/dist/tf.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/face-landmarks-detection"></script>
+
+
     <!-- Load BodyPix -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.0"></script>
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,13 +32,29 @@
         </svg>
 
     </button>
+    <button id="pause-btn">
+
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+        </svg>
+
+    </button>
+    <button id="pause-btn-face">
+
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+        </svg>
+
+    </button>
+
+
 
     <section class="card-container" id="card-1">
 
         <h2 class="header-all">Prevent default text operations</h2>
 
         <div  class="inner-card left-card" >
-            <ul class="no_copy">
+            <ul class="no_copy" id="no_copy">
                 <h2>Preventing some simple operation:</h2>
 
                 <li>Copy text.</li>
@@ -62,7 +81,7 @@
             </ul>
         </div>
 
-        <img class="inner-card right-card right-click-block" src="src/img.jpg" alt="img test">
+        <img id="img--" class="inner-card right-card right-click-block" src="src/img.jpg" alt="img test">
 
     </section>
 
@@ -87,8 +106,20 @@
 
     <section  class="card-container hide" id="card-4">
         <h2 class="header-all">Tensorflow JS</h2>
-        <canvas class="inner-card left-card"></canvas>
-        <video class="inner-card right-card"  id="myVid" autoplay playsinline></video>
+
+        <canvas id="canvas-bodypix" class="inner-card left-card"></canvas>
+        <video class="inner-card right-card"  id="vid-bodypix" autoplay playsinline></video>
+
+        <p class="inner-card" id="op">cheat detect</p>
+
+
+    </section>
+
+    <section  class="card-container hide" id="card-5">
+        <h2 class="header-all">Tensorflow JS</h2>
+
+        <canvas id="canvas-face" class="inner-card left-card"></canvas>
+        <video class="inner-card right-card"  id="vid-face" autoplay playsinline></video>
 
     </section>
 
@@ -99,6 +130,8 @@
 
 
 </body>
-<script src="main.js" defer></script>
+<script src="main.js" ></script>
 <script src="eye_proctor.js" defer></script>
+<script src="data.js" defer></script>
+<script src="faceTracking.js" defer></script>
 </html>

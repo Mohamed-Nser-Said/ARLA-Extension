@@ -60,8 +60,22 @@ class EasyBlocker{ // this class block some of the browser features
 
         // temp function to handle and receive the events and show an alert
         function notificationAlert(e, operation) {
-            alert(`Sorry ${operation} is not Allowed`);
-            e.preventDefault();}
+            // alert(`Sorry ${operation} is not Allowed`);
+            e.preventDefault();
+
+            if (operation=="Copy" || operation=="Drag"){
+                document.getElementById("no_copy").classList.add("copy-warning")
+                setTimeout(()=>{document.getElementById("no_copy").classList.remove("copy-warning")}, 300)
+
+
+            }
+
+            else if(operation=="Right Click"){
+                document.getElementById("img--").classList.add("copy-warning")
+                setTimeout(()=>{document.getElementById("img--").classList.remove("copy-warning")}, 300)
+
+            }
+        }
 
         // blocking right click for any images that has the class name *right-click-img-block*
         let images = document.getElementsByClassName("right-click-block");
@@ -72,7 +86,7 @@ class EasyBlocker{ // this class block some of the browser features
         // blocking copy and drag features for any elements that has the class name *no_copy*
         let copy_elm = document.getElementsByClassName("no_copy");
         for (const ele of copy_elm) {
-            ele.addEventListener('copy', function (e){notificationAlert(e, "Copy")}, false);
+            ele.addEventListener('copy', function (e){notificationAlert(e,"Copy")}, false);
             ele.addEventListener('dragstart', function (e ){notificationAlert(e, "Drag")}, false);
         }}
 
@@ -100,13 +114,13 @@ class EasyBlocker{ // this class block some of the browser features
 
 
 
-
 function showInfo() {
     const output = document.getElementById('output');
     output.innerText = `
         Pointer Out:    ${block.pointer_conter}
         Tab Changed:    ${block.tab_change_num}
         `}
+
 
 function sliderButton() {
     let i=1;
@@ -125,7 +139,7 @@ function sliderButton() {
 
     right_btn.addEventListener('click', function (e ){
 
-        if (i<4){
+        if (i<5){
             document.getElementById(`card-${i}`).setAttribute("class", "hide");
             i+=1;
             document.getElementById(`card-${i}`).setAttribute("class", "card-container");
