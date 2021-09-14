@@ -1,5 +1,16 @@
 
 
+class Device {
+
+    static get isMobile(){
+        document.write(navigator.userAgent)
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    }
+
+}
+
+console.log(Device.isMobile)
+
 class EasyBlocker{ // this class block some of the browser features
     constructor() {
         this.setup()
@@ -13,18 +24,52 @@ class EasyBlocker{ // this class block some of the browser features
         this.tabChangedDetector()
         this.pointerDetector()
         this.pagePrintBlocker()
+        this.windowSizeTracker()
     }
+
+
+    windowSizeTracker(){
+
+
+
+        window.addEventListener('resize', (e) => {
+
+            let widthRation = window.outerWidth/window.screen.width
+            let heightRation = window.outerHeight/window.screen.height
+
+
+            document.getElementById("window-size-par").innerText=
+                `
+                Screen Width = ${window.screen.width}Px
+                Window Width = ${window.outerWidth}Px
+                Width Percentage = ${widthRation}%
+                
+                
+                Screen height = ${window.screen.height}Px
+                Window height = ${window.outerHeight}Px         
+                height Percentage = ${heightRation}%
+                
+                orientation = ${screen.orientation.angle}
+                
+               
+            
+                `
+
+
+        })}
+
 
     pointerDetector(){
         let self = this;
         const para = document.querySelector('html');
-        const card_warning = document.getElementById("card-3")
+        const card_warning = document.getElementById("card-3");
 
         para.addEventListener('pointerleave', (e) => {
            self.pointer_conter++;
             // new Notification("You MUST NOT LEAVE THE EXAM, IF YOU DO NOT BACK IN 10 SECOND THE EXAM WILL " +
             //     "BE CANCELED");
-            card_warning.classList.add("warning")
+            // alert("hi")
+            card_warning.classList.add("warning");
            showInfo();
 
         });
@@ -60,7 +105,7 @@ class EasyBlocker{ // this class block some of the browser features
 
         // temp function to handle and receive the events and show an alert
         function notificationAlert(e, operation) {
-            // alert(`Sorry ${operation} is not Allowed`);
+            alert(`Sorry ${operation} is not Allowed`);
             e.preventDefault();
 
             if (operation=="Copy" || operation=="Drag"){
@@ -122,36 +167,9 @@ function showInfo() {
         `}
 
 
-function sliderButton() {
-    let i=1;
-
-    let left_btn = document.getElementById("left-btn");
-    let right_btn = document.getElementById("right-btn");
-
-    left_btn.addEventListener('click', function (e){
-        if (i>1){
-            document.getElementById(`card-${i}`).setAttribute("class", "hide");
-            i-=1;
-            document.getElementById(`card-${i}`).setAttribute("class", "card-container");
-
-        }
-    }, false);
-
-    right_btn.addEventListener('click', function (e ){
-
-        if (i<5){
-            document.getElementById(`card-${i}`).setAttribute("class", "hide");
-            i+=1;
-            document.getElementById(`card-${i}`).setAttribute("class", "card-container");
-
-        }
-    }, false);
 
 
-}
 
-
-sliderButton()
 let block = new EasyBlocker()
 
 

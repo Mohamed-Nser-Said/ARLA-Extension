@@ -49,7 +49,6 @@ function main() {
     };
 
 
-
     async function predictLoop(net) {
 
         while (play) {

@@ -6,8 +6,7 @@
     <title>ARLA extension</title>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.6.0/dist/tf.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/face-landmarks-detection"></script>
-
-
+    
     <!-- Load BodyPix -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.0"></script>
 
@@ -57,7 +56,10 @@
             <ul class="no_copy" id="no_copy">
                 <h2>Preventing some simple operation:</h2>
 
-                <li>Copy text.</li>
+                <li>Dieser Ort in meinem Kopf, ein Ort, den ich gerne verstecke.
+
+                    Du kennst die Chancen nicht, was ist, wenn ich sterben sollte?
+                </li>
                 <li>Cut text.</li>
                 <li>Drag text.</li>
                 <li>Translate text using Google Translate.</li>
@@ -89,11 +91,8 @@
         <h2 class="header-all">Detecting tab change</h2>
 
         <div  class="inner-card left-card" >
-            <ul>
-                <li>We could detect if the applicant is not active in the page, for example doing something
-                    else or using another app.</li>
-                <li>And also we could detect if the tab is changed.</li>
-            </ul>
+            <p id="window-size-par"></p>
+            <p id="window-size-par-2">OUTPUT NOT USED</p>
 
         </div>
 
@@ -130,8 +129,9 @@
 
 
 </body>
+<script src="slides.js"></script>
 <script src="main.js" ></script>
+<script src="src/data.js" defer></script>
 <script src="eye_proctor.js" defer></script>
-<script src="data.js" defer></script>
 <script src="faceTracking.js" defer></script>
 </html>

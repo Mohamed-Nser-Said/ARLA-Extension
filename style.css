@@ -155,3 +155,9 @@ img{
 
 }
 
+#canvas-face{
+    width: 80%;
+    height: 80%;
+    align-content: center;
+}
+
