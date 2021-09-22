@@ -7,11 +7,16 @@ class Device {
         return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
     }
 
-}
+    static permission(type){
+        navigator.permissions.query({name:type}).then( result => {
+            return result.state
+        })
 
-console.log(Device.isMobile)
+    }}
 
-class EasyBlocker{ // this class block some of the browser features
+
+class WindowManager{
+
     constructor() {
         this.setup()
         this.tab_change_num = 0
@@ -19,18 +24,12 @@ class EasyBlocker{ // this class block some of the browser features
     }
 
     setup(){
-        this.googleTranslateBlocker()
-        this.EventCapture()
-        this.tabChangedDetector()
+        this.visibilityChangedDetector()
         this.pointerDetector()
-        this.pagePrintBlocker()
         this.windowSizeTracker()
     }
 
-
     windowSizeTracker(){
-
-
 
         window.addEventListener('resize', (e) => {
 
@@ -51,49 +50,56 @@ class EasyBlocker{ // this class block some of the browser features
                 
                 orientation = ${screen.orientation.angle}
                 
-               
             
                 `
 
+        })}
+
+    pointerDetector(){
+
+        document.addEventListener('pointerleave', (e) => {
+
+            // if (!document.hasFocus())
+            {
+                this.pointer_conter++;
+                pointerDetectorSlidAnimation(this.pointer_conter, this.tab_change_num, true);
+            }
+
+        });
+
+        document.addEventListener('pointerover', (event) => {
+            pointerDetectorSlidAnimation(this.pointer_conter, this.tab_change_num, false);
 
         })}
 
-
-    pointerDetector(){
-        let self = this;
-        const para = document.querySelector('html');
-        const card_warning = document.getElementById("card-3");
-
-        para.addEventListener('pointerleave', (e) => {
-           self.pointer_conter++;
-            // new Notification("You MUST NOT LEAVE THE EXAM, IF YOU DO NOT BACK IN 10 SECOND THE EXAM WILL " +
-            //     "BE CANCELED");
-            // alert("hi")
-            card_warning.classList.add("warning");
-           showInfo();
-
-        });
-
-        para.addEventListener('pointerover', (event) => {
-            card_warning.classList.remove("warning")
+    visibilityChangedDetector() {
+        //  this event fires when ever the user changes the tab*
+        document.addEventListener("visibilitychange", event => {
+            if (document.visibilityState == "visible") {
+                this.tab_change_num++
+                pointerDetectorSlidAnimation(this.pointer_conter, this.tab_change_num, true)
+            }
+        })
 
 
-
-    })}
-
-    pagePrintBlocker(){
-        window.addEventListener('beforeprint', (event) => {
-            let bodyElem = document.getElementsByTagName("body")[0];
-            bodyElem.setAttribute("class", "hide");
-        });
-
-
-        window.addEventListener('afterprint', (event) => {
-            let bodyElem = document.getElementsByTagName("body")[0];
-            bodyElem.removeAttribute("class")
-        });
 
     }
+
+}
+
+
+class EventBlocker{ // this class block some of the browser features
+    constructor() {
+        this.setup()
+    }
+
+    setup(){
+        this.googleTranslateBlocker()
+        this.clipboardEventCapture()
+        this.pagePrintBlocker()
+        this.rightClickEventCapture()
+    }
+
 
     googleTranslateBlocker() {
         // blocking Google translator
@@ -101,76 +107,97 @@ class EasyBlocker{ // this class block some of the browser features
         htmlTag.setAttribute("translate", "no");
     }
 
-    EventCapture(){
+    rightClickEventCapture(target="right-click-block"){
 
-        // temp function to handle and receive the events and show an alert
-        function notificationAlert(e, operation) {
-            alert(`Sorry ${operation} is not Allowed`);
-            e.preventDefault();
-
-            if (operation=="Copy" || operation=="Drag"){
-                document.getElementById("no_copy").classList.add("copy-warning")
-                setTimeout(()=>{document.getElementById("no_copy").classList.remove("copy-warning")}, 300)
-
-
-            }
-
-            else if(operation=="Right Click"){
-                document.getElementById("img--").classList.add("copy-warning")
-                setTimeout(()=>{document.getElementById("img--").classList.remove("copy-warning")}, 300)
-
-            }
+        // blocking right click for any element that has the class name *right-click-img-block*
+        let elements = document.getElementsByClassName(target);
+        for (const elm of elements) {
+            elm.addEventListener('contextmenu',  e =>{
+                notificationAlert("Right Click")
+                e.preventDefault()}, false);
         }
 
-        // blocking right click for any images that has the class name *right-click-img-block*
-        let images = document.getElementsByClassName("right-click-block");
-        for (const img of images) {
-            img.addEventListener('contextmenu', function (e){notificationAlert(e, "Right Click")}, false);
-        }
+    }
+
+    clipboardEventCapture(target="no_copy"){
 
         // blocking copy and drag features for any elements that has the class name *no_copy*
-        let copy_elm = document.getElementsByClassName("no_copy");
+        let copy_elm = document.getElementsByClassName(target);
         for (const ele of copy_elm) {
-            ele.addEventListener('copy', function (e){notificationAlert(e,"Copy")}, false);
-            ele.addEventListener('dragstart', function (e ){notificationAlert(e, "Drag")}, false);
-        }}
+            ele.addEventListener('copy',  e=> {
+                    e.preventDefault()
+                notificationAlert("Copy")
+                }, false);
 
-    tabChangedDetector() {
-        //  this event fires when ever the user changes the tab*
-        let self = this;
-        function EventHandler(e) {
-            self.tab_change_num++
-            showInfo()
-            alert(`Tab has changed${e}`);
+            ele.addEventListener('dragstart',  e =>{
+                e.preventDefault()
+                notificationAlert("Drag")}, false);
         }
+    }
 
-        document.addEventListener("visibilitychange", event => {
-            if (document.visibilityState == "visible") {
-                EventHandler(event)
+    pagePrintBlocker(){
+        let bodyElem = document.getElementsByTagName("body")[0]
+        window.addEventListener('beforeprint', (event) => {
+            bodyElem.setAttribute("class", "hide");
+        });
 
-            }
-            // else if (document.visibilityState == "hidden"){alert('thanks')}
+        window.addEventListener('afterprint', (event) => {
+            bodyElem.removeAttribute("class")
+        });
 
-        })
+    }
 
-
-
-}}
-
+}
 
 
-function showInfo() {
+
+
+function notificationAlert(operation) {
+// temp function to handle and receive the events and show an alert
+    if (operation=="Copy" || operation=="Drag"){
+        document.getElementById("no_copy").classList.add("copy-warning")
+        setTimeout(()=>{document.getElementById("no_copy").classList.remove("copy-warning")}, 300)
+
+
+    }
+
+    else if(operation=="Right Click"){
+        document.getElementById("img--").classList.add("copy-warning")
+        setTimeout(()=>{document.getElementById("img--").classList.remove("copy-warning")}, 300)
+
+    }
+
+}
+
+
+
+function pointerDetectorSlidAnimation(pointerNum, tabNum, warning) {
+// temp function for slides
+    const card_warning = document.getElementById("card-3");
     const output = document.getElementById('output');
+    if(warning){
+        card_warning.classList.add("warning");
+
+    }else if(!warning){
+        card_warning.classList.remove("warning");
+    }
+
     output.innerText = `
-        Pointer Out:    ${block.pointer_conter}
-        Tab Changed:    ${block.tab_change_num}
-        `}
+        Pointer Out:    ${pointerNum}
+        Visibility count:    ${tabNum}
+      
+        `
+    // new Notification("You MUST NOT LEAVE THE EXAM, IF YOU DO NOT BACK IN 10 SECOND THE EXAM WILL " +
+    //     "BE CANCELED");
+}
 
 
 
 
 
-let block = new EasyBlocker()
+
+new EventBlocker()
+new WindowManager()
 
 
 
