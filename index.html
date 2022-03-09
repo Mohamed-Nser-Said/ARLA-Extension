@@ -16,41 +16,82 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=
     Open+Sans:ital,wght@0,300;0,400;0,800;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="rec/style.css">
+    <link rel="stylesheet" href="rec/general.css">
 
 </head>
 <body >
 
-    <button id="right-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-        </svg>
-    </button>
-    <button id="left-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-        </svg>
 
-    </button>
-    <button id="pause-btn">
-
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
-        </svg>
-
-    </button>
-    <button id="pause-btn-face">
-
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
-        </svg>
-
-    </button>
+<main>
 
 
+    <section class="card-container hide" id="card-1">
 
-    <section class="card-container" id="card-1">
+            <h2 class="header-all">Internship Demo: Visual Illustration</h2>
 
-        <h2 class="header-all">Prevent default text operations</h2>
+            <div  id="opening" class="inner-card full-inner-card" >
+                <p >
+                    This is visual illustration, and walk through using examples and interactive elements.
+                </p>
+
+            </div>
+
+
+        </section>
+
+    <section class="card-container" id="card-2">
+        <h2 class="header-all">Situation 1: Language Exams</h2>
+
+        <div class="inner-card full-inner-card translation-card">
+            <p>Hallo! mein Name ist Claire. ich bin 12 Jahre alt.
+                Ich bin Student und ich mag meine Schule</p>
+
+            <div >
+                <p>Wie alt ist Claire?</p><br>
+                <input type="radio" id="1" name="drone" value="hieß" checked><label for="1">a) Claire ist 13 Jahre alt</label>
+                <br>
+                <input type="radio" id="2" name="drone" value="hießt"><label for="2">b) Claire ist 19 Jahre alt</label>
+                <br>
+                <input type="radio" id="3" name="drone" value="hießen"><label for="3">c) Claire ist 31 Jahre alt</label>
+            </div>
+
+            <div>
+                <button class="btn-general" id="disable-translation-btn">Translation is ON</button>
+                <button class="hide btn-general" id="enable-translation-btn">Translation is OFF</button>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+    <section class="card-container hide" id="card-3">
+        <h2 class="header-all">Situation 2: Text Operation</h2>
+
+        <div class="inner-card full-inner-card translation-card">
+            <p id="text-copy" class="no_copy">Calculate the total area of a triangle, whose base is 3cm and height 6cm?</p>
+
+            <textarea class="inner-card" placeholder="Try to copy and past it here"></textarea>
+
+
+            <div>
+                <button class="btn-general" id="btn-copy-on" >ON</button>
+                <button class="hide btn-general" id="btn-copy-off" >OFF</button>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+    <section class="card-container hide" id="card-44">
+
+        <h2 class="header-all">Situation 2: Text Operation</h2>
 
         <div  class="inner-card left-card" >
             <ul class="no_copy" id="no_copy">
@@ -72,27 +113,36 @@
 
     </section>
 
-    <section class="card-container hide" id="card-2">
+    <section class="card-container hide" id="card-4">
         <h2 class="header-all">Other Operations</h2>
 
         <div  class="inner-card left-card" >
             <ul>
                 <li>Preventing image download.</li>
                 <li>Prevent Printing or saving as PDF.</li>
-                <li>Prevent taking a Screenshot.</li>
             </ul>
         </div>
 
-        <img id="img--" class="inner-card right-card right-click-block" src="rec/img.jpg" alt="img test">
+        <img id="img--" class="inner-card right-card right-click-block" src="rec/img.png" alt="img test">
 
     </section>
 
-    <section class="card-container hide" id="card-3">
-        <h2 class="header-all">Detecting tab change</h2>
+    <section class="card-container hide" id="card-5">
+        <h2 class="header-all">Detecting your movements</h2>
 
         <div  class="inner-card left-card" >
             <p id="window-size-par"></p>
-            <p id="window-size-par-2">OUTPUT NOT USED</p>
+            <ul>
+                <li>
+                    First try to reduce the size of the window, then move the mouse out
+                </li>
+                <li>
+                    Second try to change the tab.
+                </li>
+                <li>
+                    Then try to minimize the window.
+                </li>
+            </ul>
 
         </div>
 
@@ -103,30 +153,36 @@
 
     </section>
 
-    <section  class="card-container hide" id="card-4">
-        <h2 class="header-all">Tensorflow JS</h2>
+    <section class="card-container hide" id="card-6">
+        <h2 class="header-all">Focus Tracking</h2>
 
-        <canvas id="canvas-bodypix" class="inner-card left-card"></canvas>
-        <video class="inner-card right-card"  id="vid-bodypix" autoplay playsinline></video>
+<!--        <canvas id="canvas-bodypix" class="inner-card left-card"></canvas>-->
 
-        <p class="inner-card" id="op">cheat detect</p>
+        <div id="video-div">
+            <video class="left-card inner-card"  id="vid-bodypix" autoplay playsinline></video>
+
+            <div id="div-op" class="right-card inner-card">
+                <p id="op1">Output</p>
+                <p id="op2">Output</p>
+            </div>
+
+
+
+        </div>
+
 
 
     </section>
 
-    <section  class="card-container hide" id="card-5">
-        <h2 class="header-all">Tensorflow JS</h2>
 
-        <canvas id="canvas-face" class="inner-card left-card"></canvas>
-        <video class="inner-card right-card"  id="vid-face" autoplay playsinline></video>
+    <div>
+        <button class="btn-control btn-general" id="back-btn">Back</button>
+        <button class="btn-control btn-general" id="next-btn">Next</button>
+        <button id="btn-start" class="btn-general hide">start</button>
 
-    </section>
+    </div>
 
-
-
-
-
-
+</main>
 
 </body>
 <script src="slides.js"></script>
